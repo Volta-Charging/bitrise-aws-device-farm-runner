@@ -294,11 +294,21 @@ function device_farm_run {
 }
 
 function device_farm_run_ios {
-    device_farm_run ios "$ios_pool" "$ipa_path" IOS_APP
+    pools=($ios_pool)
+    for pool in "${pools[@]}"
+    do
+        echo "Current pool: $pool"
+        device_farm_run ios "$pool" "$ipa_path" IOS_APP
+    done
 }
 
 function device_farm_run_android {
-    device_farm_run android "$android_pool" "$apk_path" ANDROID_APP
+    pools=($android_pool)
+    for pool in "${pools[@]}"
+    do
+        echo "Current pool: $pool"
+        device_farm_run android "$pool" "$apk_path" ANDROID_APP
+    done
 }
 
 #=======================================
